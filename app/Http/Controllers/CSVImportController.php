@@ -16,8 +16,31 @@ class CSVImportController extends Controller
     $employeInfo =Employee::get();
     $totalSalary = Employee::sum('salary');
 
-    return view('home',compact('employeInfo' , 'totalSalary'));
-    
+    $maxSalaryEmployees = Employee::select('salary')
+            ->orderBy('salary', 'desc')
+            ->get();
+    // $nameU = Employee::where('First_Name', $employeeWithMaxSalary->First_Name)
+    // ->distinct('First_Name')
+    // ->pluck('First_Name');
+
+    //$uniqueRecords = Employee::select('First_Name')->distinct()->get();
+
+
+    // Unique employee names
+$uniqueEmployeeNames = Employee::select('First_Name')
+->distinct()
+->pluck('First_Name');
+
+// Common employee names
+$commonEmployeeNames = Employee::select('First_Name')
+->groupBy('First_Name')
+->havingRaw('COUNT(*) > 1')
+->pluck('First_Name');
+
+
+
+    return view('home',compact('employeInfo' , 'totalSalary','maxSalaryEmployees','uniqueEmployeeNames','commonEmployeeNames'));
+
    }
 
 
