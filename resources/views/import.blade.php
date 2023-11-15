@@ -7,8 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-<h1>HoLLOe pAGE</h1>
-
     
+
+    <form action="/import" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" accept=".csv">
+        <button type="submit">Import CSV</button>
+    </form>
+
 </body>
 </html>
