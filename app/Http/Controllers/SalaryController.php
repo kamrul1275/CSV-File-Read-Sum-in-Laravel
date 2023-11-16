@@ -29,7 +29,7 @@ public function SalaryImport(Request $request)
             'id' => $data[0],
             'Salary' => $data[1],
            //dd($data[2]),
-            'employe_id' => $data[2],
+            'Employee_Id' => $data[2],
 
           
            

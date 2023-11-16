@@ -15,7 +15,16 @@ class Employee extends Model
 
     function salary(){
 
-        return $this->hasOne(Salary::class,'employe_id', 'id');
+        return $this->hasOne(Salary::class,'Employee_Id', 'id');
         
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+    
+        static::creating(function ($employee) {
+            // Your creating event logic
+        });
     }
 }
