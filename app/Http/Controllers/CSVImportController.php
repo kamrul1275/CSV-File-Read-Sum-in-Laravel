@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Salary;
 use Illuminate\Http\Request;
 use League\Csv\Reader;
 
@@ -12,18 +13,15 @@ class CSVImportController extends Controller
 
    function index(){
 
-
     $employeInfo =Employee::get();
-    $totalSalary = Employee::sum('salary');
+    // $employeInfo =Salary::get();
+    //dd($employeInfo);
+    $totalSalary = Salary::sum('salary');
 
-    $maxSalaryEmployees = Employee::select('salary')
-            ->orderBy('salary', 'desc')
-            ->get();
-    // $nameU = Employee::where('First_Name', $employeeWithMaxSalary->First_Name)
-    // ->distinct('First_Name')
-    // ->pluck('First_Name');
+  $maxSalaryEmployees = Salary::select('salary')->orderBy('salary', 'desc')->get();
+   
 
-    //$uniqueRecords = Employee::select('First_Name')->distinct()->get();
+    $uniqueRecords = Employee::select('First_Name')->distinct()->get();
 
 
     // Unique employee names
@@ -39,7 +37,7 @@ $commonEmployeeNames = Employee::select('First_Name')
 
 
 
-    return view('home',compact('employeInfo' , 'totalSalary','maxSalaryEmployees','uniqueEmployeeNames','commonEmployeeNames'));
+    return view('home',compact('employeInfo','uniqueEmployeeNames','commonEmployeeNames','totalSalary','maxSalaryEmployees','uniqueRecords'));
 
    }
 
@@ -60,7 +58,9 @@ public function import(Request $request)
             'Email' => $data[3],
             'Phone_Number' => $data[4],
             'Job_Id' => $data[5],
-            'Salary' => floatval($data[6]),
+            //dd($data[6]),
+            
+           
         ]);
 
         //dd($data[6]);

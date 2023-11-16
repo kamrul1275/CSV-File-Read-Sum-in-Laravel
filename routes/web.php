@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CSVImportController;
+use App\Http\Controllers\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,11 @@ use App\Http\Controllers\CSVImportController;
 Route::get('/', [CSVImportController::class, 'index']);
 
 Route::post('/import', [CSVImportController::class, 'import']);
+
+
+// salary
+
+
+
+Route::get('/salary', [SalaryController::class, 'index']);
+Route::post('/salary/import', [SalaryController::class, 'SalaryImport']);

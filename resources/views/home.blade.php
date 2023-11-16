@@ -16,7 +16,7 @@
 
 
     <div class="container">
-
+        <a href="{{ url('/salary')}}" class="btn btn-success">Salary</a>
 
         <div class="row">
 
@@ -49,8 +49,7 @@
                                 <td>{{ $data->Email }}</td>
                                 <td>{{ $data->Phone_Number }}</td>
                                 <td>{{ $data->Job_Id }}</td>
-                                <td>{{ $data->Salary }}</td>
-
+                             <td>{{ $data->salary->salary??"" }}</td>   
                             </tr>
                         @endforeach
 
