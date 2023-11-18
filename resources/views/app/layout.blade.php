@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel</title>
+    <title>app</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
@@ -46,33 +46,59 @@
     </style>
 </head>
 <body>
-    
-<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+
+
+
+
+{{--    
     <div class="container">
-        <a class="navbar-brand" href="#">Laravel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-   
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
-                    </li>
-                @endguest
-            </ul>
-  
+
+        <div class="row">
+      
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">App</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url('/')}}">Home</a>
+                  </li>
+
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('create.employe')}}">Employe</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('create.salary')}}">Salarry</a>
+                  </li>
+
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login')}}">Login</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register')}}">Register</a>
+                  </li>
+              
+             
+                </ul>
+              
+              </div>
+            </div>
+          </nav>
+             
         </div>
-    </div>
-</nav>
+      </div> --}}
+
+ 
+
+
+@include('pages.header')
   
 @yield('content')
      

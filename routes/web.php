@@ -34,7 +34,7 @@ Route::post('employe/create', [AuthController::class, 'EmployeStore'])->name('em
 
 // employe csv import 
 
-Route::get('/', [CSVImportController::class, 'index']);
+Route::get('/', [CSVImportController::class, 'index'])->name('create.employe');
 
 Route::post('/import', [CSVImportController::class, 'import']);
 
@@ -42,5 +42,5 @@ Route::post('/import', [CSVImportController::class, 'import']);
 
 // salary csv import 
 
-Route::get('/salary', [SalaryController::class, 'index']);
+Route::get('/salary', [SalaryController::class, 'index'])->name('create.salary');
 Route::post('/salary/import', [SalaryController::class, 'SalaryImport']);

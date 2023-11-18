@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
-use Session;
+//use Session;
 
 use App\Models\User;
 
-use Hash;
+//use Hash;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Hash;
 
   
 
@@ -212,7 +214,7 @@ $employes= Employee::paginate(8);
 
     public function logout() {
 
-        Session::flush();
+        //Session::flush();
 
         Auth::logout();
 

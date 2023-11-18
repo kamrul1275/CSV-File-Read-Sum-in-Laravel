@@ -38,9 +38,15 @@ class CSVImportController extends Controller
 
         $fileContents = file($file->getPathname());
 
-        foreach ($fileContents as $line) {
-            $data = str_getcsv($line);
+        foreach ($fileContents as $key => $line) {
 
+            // dd($line);
+            if ($key === 0) {
+                continue;
+            }
+            
+            $data = str_getcsv($line);
+            
             Employee::create([
                 'Employee_Id' => $data[0],
                 'First_Name' => $data[1],
@@ -49,10 +55,8 @@ class CSVImportController extends Controller
                 'Phone_Number' => $data[4],
                 'Job_Id' => $data[5],
                 //dd($data[6]),
-
-
             ]);
-
+            
             //dd($data[6]);
         }
 
