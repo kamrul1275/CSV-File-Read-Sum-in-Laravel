@@ -22,14 +22,20 @@ public function SalaryImport(Request $request)
 
     $fileContents = file($file->getPathname());
 
-    foreach ($fileContents as $line) {
+    foreach ($fileContents as $key=> $line) {
+
+
+        if ($key === 0) {
+            continue;
+        }
+
         $data = str_getcsv($line);
 
         Salary::create([
-            'id' => $data[0],
-            'Salary' => $data[1],
-           //dd($data[2]),
-            'Employee_Id' => $data[2],
+            
+            'salary' => $data[0],
+              //dd($data[1]),
+            //'Employee_Id ' => $data[1],
 
           
            

@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->integer('Employee_Id');
-            $table->string('First_Name'); 
-            $table->string('Last_Name'); 
+
+            // $table->unsignedBigInteger('user_id')->nullable();
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+            
+            $table->string('Name');  
             $table->string('Email');
-            $table->string('Phone_Number');
+            $table->string('Phone');
             $table->string('Job_Id');
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
     }

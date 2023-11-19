@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Salary;
+use App\Models\User;
 
 class Employee extends Model
 {
@@ -17,7 +18,20 @@ class Employee extends Model
 
         return $this->hasOne(Salary::class,'Employee_Id', 'id');
         
+    }//end method
+
+
+
+    function user(){
+
+        return $this->hasOne(User::class, 'employee_id','id');
+        
     }
+
+
+
+
+
 
     protected static function boot()
     {

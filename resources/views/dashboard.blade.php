@@ -28,42 +28,44 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Employe Id</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone</th>
-                                    <th scope="col">JoB Id</th>
-                                    <th scope="col">Salary</th>
+                                    <th scope="col">Create_By</th>
                                     <th scope="col">Action</th>
+            
                                 </tr>
                             </thead>
                             <tbody>
 
 
+@foreach ($employes as  $data )
 
 
-                                @foreach ($employes as $key => $data)
-                                    <tr>
-                                        <th scope="row">{{ $key + 1 }}</th>
-                                        <td>{{ $data->Employee_Id }}</td>
-                                        <td>{{ $data->First_Name }}</td>
-                                        <td>{{ $data->Last_Name }}</td>
-                                        <td>{{ $data->Email }}</td>
-                                        <td>{{ $data->Phone_Number }}</td>
-                                        <td>{{ $data->Job_Id }}</td>
-                                        <td>{{ $data->salary->salary ?? '' }}</td>
-                                        <td> </td>
+<tr>
+    <td>4</td>
+    
+    <td>{{$data->Name}}</td>
+    <td>{{$data->Email}}</td>
+    <td>{{$data->Phone}}</td>
+   <td>{{$data->user->name ?? ''}}</td>
+
+    {{-- <td>
+    <a href="" class="btn btn-outline-warning"> Author</a>
+    </td> --}}
+    <td>
+        <a href="" class="btn btn-success">Edit</a>
+        <a href="" class="btn btn-danger">Delete</a>
+        </td>
+    
+      </tr>
 
 
-                                        <td>
-                                            <a href="" class="btn btn-success">edit</a>
-                                            <a href="" class="btn btn-danger">delete</a>
+    
+@endforeach
 
-                                        </td>
-                                    </tr>
-                                @endforeach
+                           
 
 
 
@@ -73,7 +75,7 @@
 
                         </table>
 
-                        {{ $employes->links() }}
+                       
 
                     </div>
                     <div class="col-md-4">
@@ -103,16 +105,12 @@
 
 
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">First Name</label>
-                                <input type="text" class="form-control" name="First_Name" id="exampleInputEmail1"
+                                <label for="exampleInputEmail1" class="form-label"> Name</label>
+                                <input type="text" class="form-control" name="Name" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                             </div>
 
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="Last_Name" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
-                            </div>
+                         
 
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -122,8 +120,8 @@
 
 
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" name="Phone_Number" id="exampleInputEmail1"
+                                <label for="exampleInputEmail1" class="form-label">Phone</label>
+                                <input type="text" class="form-control" name="Phone" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                             </div>
 
@@ -139,6 +137,20 @@
                                     aria-describedby="emailHelp">
                             </div>
 
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="Password" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+
+
+                            <div class="mb-3"  hidden="hidden">
+{{--                                
+                                <input type="hiden" class="form-control" name="employe_id" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp"> --}}
+                            </div>
+
+
 
 
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -152,4 +164,14 @@
 
         </div>
     </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+
+
+
 @endsection

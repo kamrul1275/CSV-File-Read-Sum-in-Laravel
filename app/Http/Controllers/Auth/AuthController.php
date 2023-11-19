@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Salary;
@@ -17,7 +18,7 @@ use App\Models\User;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Hash;
 
-  
+
 
 class AuthController extends Controller
 
@@ -38,10 +39,9 @@ class AuthController extends Controller
     {
 
         return view('auth.login');
+    }
 
-    }  
 
-      
 
     /**
 
@@ -58,10 +58,9 @@ class AuthController extends Controller
     {
 
         return view('auth.registration');
-
     }
 
-      
+
 
     /**
 
@@ -85,7 +84,7 @@ class AuthController extends Controller
 
         ]);
 
-   
+
 
         $credentials = $request->only('email', 'password');
 
@@ -93,17 +92,13 @@ class AuthController extends Controller
 
             return redirect()->intended('dashboard')
 
-                        ->withSuccess('You have Successfully loggedin');
-
+                ->withSuccess('You have Successfully loggedin');
         }
 
-  
-
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
-
     }
 
-      
+
 
     /**
 
@@ -117,7 +112,7 @@ class AuthController extends Controller
 
     public function postRegistration(Request $request)
 
-    {  
+    {
 
         $request->validate([
 
@@ -129,19 +124,15 @@ class AuthController extends Controller
 
         ]);
 
-           
 
         $data = $request->all();
 
         $check = $this->create($data);
 
-         
-
         return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
-
     }
 
-    
+
 
     /**
 
@@ -156,23 +147,18 @@ class AuthController extends Controller
     public function dashboard()
 
     {
-$employes= Employee::paginate(8);
+        $employes = Employee::paginate(8);
 
-//dd($employes);
+        //dd($employes);
 
-        if(Auth::check()){
+        if (Auth::check()) {
 
-            return view('dashboard',compact('employes'));
-
+            return view('dashboard', compact('employes'));
         }
-
-  
-
         return redirect("login")->withSuccess('Opps! You do not have access');
-
     }
 
-    
+
 
     /**
 
@@ -188,19 +174,16 @@ $employes= Employee::paginate(8);
 
     {
 
-      return User::create([
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
 
-        'name' => $data['name'],
+            'password' => Hash::make($data['password'])
 
-        'email' => $data['email'],
-
-        'password' => Hash::make($data['password'])
-
-      ]);
-
+        ]);
     }
 
-    
+
 
     /**
 
@@ -212,78 +195,30 @@ $employes= Employee::paginate(8);
 
      */
 
-    public function logout() {
-
-        //Session::flush();
-
+    public function logout()
+    {
         Auth::logout();
-
-  
-
         return Redirect('login');
-
-    }//end method
-
+    } //end method
 
 
 
+    // user create 
 
-function EmployeStore(Request $request){
+    public function userStore(Request $request)
 
-    //dd($request->Employee_Id);
+    {
+        $request->validate([
 
-     $request->validate([
-        'Employee_Id' => 'required',
-        'First_Name' => 'required',
-        'Last_Name' => 'required',
-        'Email' => 'required',
-        'Phone_Number' => 'required',
-        'Job_Id' => 'required',
-        'salary'=>'required',
-        'Employee_Id'=>'required',
-    ]);
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
 
-
-    
-
-    $employee=Employee::create([
-
-        'Employee_Id' => $request->Employee_Id,
-
-        'First_Name' =>$request->First_Name,
-        'Last_Name' => $request->Last_Name,
-        'Email' => $request->Email,
-        'Phone_Number' =>$request->Phone_Number,
-
-        //dd($request->Job_Id),
-        'Job_Id' =>$request->Job_Id,
-
-
-    ]); 
-
-    if ($employee) {
-        $employee->salary()->create([
-            'salary' => $request->input('salary'),
-            //dd($request->input('Employee_Id')),
-            'Employee_Id' => $request->input('Employee_Id'),
-            // Add other fields as needed
         ]);
-    } else {
-        
+
+        $data = $request->all();
+        $check = $this->create($data);
+
+        return redirect()->withSuccess('Great! You have Successfully ');
     }
-
-
-    
-  
-
-    return redirect()->back()->with('success', 'Employee Create successfully.');
-
-    
-}
-
-
-
-
-
-
 }
