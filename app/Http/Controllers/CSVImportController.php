@@ -55,10 +55,10 @@ class CSVImportController extends Controller
 
 
 
-    function userProfileStore(Request $request)
+    function userProfileStore(Request $request,$id)
     {
 
-        $usersInfo = new User();
+        $usersInfo = User::find($id);
         $usersInfo->name = $request->name;
         $usersInfo->email = $request->email;
 

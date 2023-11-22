@@ -37,11 +37,8 @@ class AuthController extends Controller
     public function index()
 
     {
-
         return view('auth.login');
     }
-
-
 
     /**
 
@@ -56,12 +53,8 @@ class AuthController extends Controller
     public function registration()
 
     {
-
         return view('auth.registration');
     }
-
-
-
     /**
 
      * Write code on Method
@@ -75,17 +68,12 @@ class AuthController extends Controller
     public function postLogin(Request $request)
 
     {
-
         $request->validate([
 
             'email' => 'required',
-
             'password' => 'required',
 
         ]);
-
-
-
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -97,8 +85,6 @@ class AuthController extends Controller
 
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
-
-
 
     /**
 
@@ -113,22 +99,15 @@ class AuthController extends Controller
     public function postRegistration(Request $request)
 
     {
-
         $request->validate([
 
             'name' => 'required',
-
             'email' => 'required|email|unique:users',
-
             'password' => 'required|min:6',
-
         ]);
 
-
         $data = $request->all();
-
         $check = $this->create($data);
-
         return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
     }
 
@@ -147,13 +126,13 @@ class AuthController extends Controller
     public function dashboard()
 
     {
-        $employes = Employee::paginate(8);
+       $employee = Employee::paginate(8);
 
         //dd($employes);
 
         if (Auth::check()) {
 
-            return view('dashboard', compact('employes'));
+            return view('dashboard',compact('employee'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');
     }
@@ -173,13 +152,10 @@ class AuthController extends Controller
     public function create(array $data)
 
     {
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-
             'password' => Hash::make($data['password'])
-
         ]);
     }
 

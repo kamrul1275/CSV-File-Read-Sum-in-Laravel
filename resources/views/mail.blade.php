@@ -31,23 +31,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($employee as $data)
-                                    <tr>
-                                        <td>4</td>
-                                        <td>{{ $data->Name }}</td>
-                                        <td>{{ $data->Email }}</td>
-                                        <td>{{ $data->Phone }}</td>
-                                        <td>{{ $data->user->name ?? '' }}</td>
 
-                                        <td>
-                                            <a href="" class="btn btn-success">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+
                             </tbody>
                         </table>
-                        {{ $employee->links() }}
+                     
                     </div>
 
                     <div class="col-md-4">
@@ -64,6 +52,7 @@
                             </div>
                         @endif
 
+
                         <form action="{{ route('employe.store') }}" method="POST">
                             @csrf
 
@@ -79,6 +68,8 @@
                                 <input type="text" class="form-control" name="Name" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                             </div>
+
+
 
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -110,12 +101,6 @@
                             </div>
 
 
-                            <div class="mb-3" hidden="hidden">
-                                {{--                                
-                                <input type="hiden" class="form-control" name="employe_id" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp"> --}}
-                            </div>
-
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -125,11 +110,16 @@
     </div>
 
 
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
+
+
+
+
 
 @endsection

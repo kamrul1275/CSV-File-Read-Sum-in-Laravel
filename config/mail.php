@@ -14,6 +14,11 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
+    'from' => ['address' => 'example@example.com', 'name' => 'App Name'],
+    
+    'debug' => env('MAIL_DEBUG', true),
+
+    // 'from' => ['address' => 'example@example.com', 'name' => 'App Name']
 
     /*
     |--------------------------------------------------------------------------

@@ -16,14 +16,14 @@
 @endphp
 
             
-               <form action="{{ url('/user/profile/store') }}" method="POST">
+               <form action="{{ url('/user/profile/store/'.$usersInfo->id) }}" method="POST">
                     @csrf
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                        
                         <input type="text" class="form-control" required value="{{ $usersInfo->id}}" name="id"
                             >
-                    </div>
+                    </div> --}}
 
 
                     <div class="mb-3">

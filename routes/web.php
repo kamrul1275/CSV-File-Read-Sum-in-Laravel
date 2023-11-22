@@ -59,7 +59,7 @@ Route::get('/get-employees', [CSVImportController::class, 'getEmployees']);
 Route::post('/import', [CSVImportController::class, 'import']);
 
 Route::get('/user/profile/{id}', [CSVImportController::class, 'userProfile'])->name('user.profile');
-Route::post('/user/profile/store', [CSVImportController::class, 'userProfileStore'])->name('user.storeprofile');
+Route::post('/user/profile/store/{id}', [CSVImportController::class, 'userProfileStore'])->name('user.storeprofile');
 
 
 
