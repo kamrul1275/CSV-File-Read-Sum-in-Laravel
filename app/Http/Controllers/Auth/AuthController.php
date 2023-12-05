@@ -4,20 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\Role;
 use App\Models\Salary;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
-
-//use Session;
-
 use App\Models\User;
-
-//use Hash;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Hash;
-
 
 
 class AuthController extends Controller
@@ -43,17 +36,16 @@ class AuthController extends Controller
     /**
 
      * Write code on Method
-
      *
-
      * @return response()
 
      */
-
     public function registration()
 
     {
-        return view('auth.registration');
+
+        $roles = Role::latest()->get();
+        return view('auth.registration',compact('roles'));
     }
     /**
 
@@ -107,11 +99,32 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
+        $user = $this->create($data);
+
+        //User::find(1)?->
+
+        //$user->roles()->sync([1,2]);
+
+
+        $post_users = $request->input('roles');
+
+        if ($post_users !== null) {
+            $roles = [];
+            foreach ($post_users as $key => $val) {
+                $roles[intval($val)] = intval($val);
+            }
+    
+            $user->roles()->sync($roles);
+
+        //dd( $user);
+    
+             //$user->syncRoles($permissions);
+
+
         return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
     }
 
-
+    }
 
     /**
 
@@ -126,13 +139,22 @@ class AuthController extends Controller
     public function dashboard()
 
     {
-       $employee = Employee::paginate(8);
+        $employee = Employee::paginate(8);
 
         //dd($employes);
 
         if (Auth::check()) {
+            request()->user();
+            $roles = request()->user()->roles;
 
-            return view('dashboard',compact('employee'));
+            $permissions = [];
+
+            foreach($roles as $role){
+                $permissions = array_merge($role->permission->toArray(), $permissions);
+            };
+            
+//dd($permissions);
+            return view('dashboard', compact('employee', 'permissions'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');
     }

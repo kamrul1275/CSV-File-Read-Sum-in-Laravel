@@ -62,6 +62,34 @@
 
                           </div>
 
+
+                          <div class="form-group row">
+                            <label for="email_address" class="col-md-4 col-form-label text-md-right">Selete Role</label>
+                            <div class="col-md-6">
+
+                            <select name="roles[]" id="" class="form-control"  >
+
+
+                                @foreach ($roles as $role)
+
+                                <option value="{{ $role->id }}">{{ $role->roll_name }}</option>
+                                    
+                                @endforeach
+
+
+                             
+
+                            </select>
+                        </div>
+                        </div>
+
+
+
+
+
+
+
+
   
 
                           <div class="form-group row">

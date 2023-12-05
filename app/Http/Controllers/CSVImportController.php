@@ -16,6 +16,7 @@ class CSVImportController extends Controller
     {
 
         $employeInfo = Employee::paginate(6);
+        
 
         $totalSalary = Salary::sum('salary');
 

@@ -26,6 +26,20 @@
                     <a class="nav-link" href="{{ route('create.employe')}}">Employe</a>
                   </li>
 
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('role.index')}}">Role</a>
+                  </li>
+
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('permission.index')}}">Permission</a>
+                  </li>
+
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('permission.access')}}">Access Permission</a>
+                  </li> 
+
 
                 @guest
                     <li class="nav-item">

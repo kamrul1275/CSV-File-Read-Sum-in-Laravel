@@ -2,6 +2,30 @@
 
 @section('content')
 
+
+
+
+
+    <ul>
+
+        @if(collect($permissions)->where('permission_name', 'creator')->count())
+        <li><Button  class="btn btn-warning">creator</Button></li>
+        @endif
+
+        @if(collect($permissions)->where('permission_name', 'editor')->count())
+        <li><Button class="btn btn-success">Edit</Button></li>
+        @endif
+        @if(collect($permissions)->where('permission_name', 'view')->count())
+        <li><Button class="btn btn-info">View</Button></li>
+        @endif
+
+        @if(collect($permissions)->where('permission_name', 'delete')->count())
+        <li><Button  class="btn btn-danger">Delete</Button></li>
+        @endif
+    </ul>
+
+
+
     <div class="container-fluid">
         <div class="row justify-content-center">
             @if (session('success'))
@@ -96,17 +120,17 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">JoB Id</label>
                                 <input type="text" class="form-control" name="Job_Id" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                   >
                             </div>
 
                             <div class="mb-3">
                                 <label for="salary" class="form-label">Salary</label>
-                                <input type="text" class="form-control" name="salary" aria-describedby="salary">
+                                <input type="text" class="form-control" autocomplete="off" name="salary"  >
                             </div>
 
                             <div class="mb-3">
                                 <label for="pass" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="Password" aria-describedby="pass">
+                                <input type="password" class="form-control" name="Password" >
                             </div>
 
 

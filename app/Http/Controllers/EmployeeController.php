@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\ProcessPodcast;
 
 
 class EmployeeController extends Controller
@@ -66,19 +67,11 @@ class EmployeeController extends Controller
         } else {
         }
 
-        // Ensure that $user has a valid email address
-        // if (filter_var($employee->Email, FILTER_VALIDATE_EMAIL)) {
-        //     Mail::to($employee->Email)->send(new WelcomeEmail($employee));
-        //     return 'Welcome email sent successfully!';
-        // } else {
-        //     return 'Invalid email address!';
-        // }
+    
+        //dd( dispatch(new ProcessPodcast((object)$employee->Email)));
+        dispatch(new ProcessPodcast((object)$employee->Email));
 
-        //dd(Mail::to($employee->Email)->send(new WelcomeEmail($employee)));
-
-        // Mail::to($employee->email)->send(new WelcomeEmail($employee));
-
-        Mail::to($employee->Email)->send(new WelcomeEmail($employee));
+        //Mail::to($employee->Email)->send(new WelcomeEmail($employee));
 
         return redirect()->back()->with('success', 'Employee Create successfully.');
     }
