@@ -45,7 +45,7 @@ class AuthController extends Controller
     {
 
         $roles = Role::latest()->get();
-        return view('auth.registration',compact('roles'));
+        return view('auth.registration', compact('roles'));
     }
     /**
 
@@ -66,11 +66,32 @@ class AuthController extends Controller
             'password' => 'required',
 
         ]);
+
+
+
+       
+
+        $request->session()->regenerate();
+
+        //dd($request->session()->regenerate());
+
+     
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
 
-            return redirect()->intended('dashboard')
+
+            $url = '';
+
+            if($request->user()->role==='admin'){
+                $url ='/admin/dashboard';
+            }else{
+    
+                $url ='/dashboard';
+            }
+
+            return redirect()->intended( $url)
 
                 ->withSuccess('You have Successfully loggedin');
         }
@@ -113,17 +134,16 @@ class AuthController extends Controller
             foreach ($post_users as $key => $val) {
                 $roles[intval($val)] = intval($val);
             }
-    
+
             $user->roles()->sync($roles);
 
-        //dd( $user);
-    
-             //$user->syncRoles($permissions);
+            //dd( $user);
+
+            //$user->syncRoles($permissions);
 
 
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
-    }
-
+            return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        }
     }
 
     /**
@@ -139,22 +159,30 @@ class AuthController extends Controller
     public function dashboard()
 
     {
+
+
+        $usersPendding =  User::where('role', 'user')->where('status', 'inactive')->with('roles')->latest()->get();
+
+//dd($usersPendding);
+
+        $usersApprove =  User::where('role', 'user')->where('status', 'active')->with('roles')->latest()->get();
+
+        //dd($usersApprove);
+
         $employee = Employee::paginate(8);
 
         //dd($employes);
 
         if (Auth::check()) {
-            request()->user();
-            $roles = request()->user()->roles;
+
+            Auth::user();
+            $roles =  Auth::user()->roles;
 
             $permissions = [];
-
-            foreach($roles as $role){
+            foreach ($roles as $role) {
                 $permissions = array_merge($role->permission->toArray(), $permissions);
             };
-            
-//dd($permissions);
-            return view('dashboard', compact('employee', 'permissions'));
+            return view('dashboard', compact('employee','permissions','usersPendding','usersApprove'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');
     }

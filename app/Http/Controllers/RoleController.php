@@ -13,13 +13,13 @@ class RoleController extends Controller
 
         //return $roles;
 
-        return view('role.index', compact('roles'));
+        return view('backend.role.index', compact('roles'));
     } //end method
 
 
     function Create()
     {
-        return view('role.create');
+        return view('backend.role.create');
     } //end method
 
 

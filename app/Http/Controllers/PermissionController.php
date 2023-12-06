@@ -11,7 +11,7 @@ class PermissionController extends Controller
     function Index(){
        
         $permissions = Permission::get();
-        return view('permission.index',compact('permissions'));
+        return view('backend.permission.index',compact('permissions'));
     }//end method
 
 
@@ -20,7 +20,7 @@ class PermissionController extends Controller
         $roles = Role::get();
 //return   $roles;
 
-        return view('permission.create',compact('roles'));
+        return view('backend.permission.create',compact('roles'));
     }//end method
 
 

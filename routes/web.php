@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CSVImportController;
 use App\Http\Controllers\SalaryController;
@@ -30,9 +31,27 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
+// admin part.
+
+ Route::group(['middleware' => 'auth'], function() {
+
+
+//Route::post('/admin/login',[AdminController::class,'AdminLogin']);
+Route::get('/admin/logout', [AuthController::class, 'Adminlogout'])->name('admin.logout');
+
+Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
+
+Route::get('/role/pendding',[AdminController::class,'AdminPendding'])->name('role.pendding');
+
+Route::get('/role/approval/{id}',[AdminController::class,'AdminApproval'])->name('role.approval');
+
+
+Route::get('/role/approve',[AdminController::class,'AdminApprove'])->name('role.approve');
+Route::get('/role/approval/pendding/{id}',[AdminController::class,'AdminApprPendding'])->name('role.approval.pendding');
 
 
 
+});
 
 // user create 
 

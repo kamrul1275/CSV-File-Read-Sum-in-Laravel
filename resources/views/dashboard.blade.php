@@ -8,21 +8,41 @@
 
     <ul>
 
-        @if(collect($permissions)->where('permission_name', 'creator')->count())
-        <li><Button  class="btn btn-warning">creator</Button></li>
+        @if (collect($permissions)->where('permission_name', 'creator')->count())
+            <li><Button class="btn btn-warning">creator</Button></li>
         @endif
 
-        @if(collect($permissions)->where('permission_name', 'editor')->count())
-        <li><Button class="btn btn-success">Edit</Button></li>
+        @if (collect($permissions)->where('permission_name', 'editor')->count())
+            <li><Button class="btn btn-success">Edit</Button></li>
         @endif
-        @if(collect($permissions)->where('permission_name', 'view')->count())
-        <li><Button class="btn btn-info">View</Button></li>
+        @if (collect($permissions)->where('permission_name', 'view')->count())
+            <li><Button class="btn btn-info">View</Button></li>
         @endif
 
-        @if(collect($permissions)->where('permission_name', 'delete')->count())
-        <li><Button  class="btn btn-danger">Delete</Button></li>
+        @if (collect($permissions)->where('permission_name', 'delete')->count())
+            <li><Button class="btn btn-danger">Delete</Button></li>
         @endif
     </ul>
+
+
+
+
+    @php
+        $id = Auth::user()->id;
+
+        //dd($id);
+        $usersAuth = App\Models\User::find($id);
+
+        $Userstatus = $usersAuth->status;
+        //dd($Userstatus);
+
+        //User::where('role', 'user')->where('status', 'inactive')->with('roles')->latest()->get();
+
+        //dd($usersPendding);
+    @endphp
+
+
+
 
 
 
@@ -38,6 +58,27 @@
             <div class="container-fluid">
 
                 <div class="row">
+
+
+
+
+                    @if ($Userstatus == 'inactive')
+                        {
+
+
+                       <h6 class="text-danger">Please wait Inactive Account</h6>
+
+                        }@else{
+
+                            <h6 class="text-success"> active Account</h6>
+
+                        }
+
+                        
+                    @endif
+
+
+
 
                     <div class="col-md-8">
                         <h3 class="text-center">Employee Table</h3>
@@ -119,18 +160,17 @@
 
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">JoB Id</label>
-                                <input type="text" class="form-control" name="Job_Id" id="exampleInputEmail1"
-                                   >
+                                <input type="text" class="form-control" name="Job_Id" id="exampleInputEmail1">
                             </div>
 
                             <div class="mb-3">
                                 <label for="salary" class="form-label">Salary</label>
-                                <input type="text" class="form-control" autocomplete="off" name="salary"  >
+                                <input type="text" class="form-control" autocomplete="off" name="salary">
                             </div>
 
                             <div class="mb-3">
                                 <label for="pass" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="Password" >
+                                <input type="password" class="form-control" name="Password">
                             </div>
 
 
