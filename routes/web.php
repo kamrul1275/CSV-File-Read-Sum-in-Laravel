@@ -119,6 +119,6 @@ Route::group(['middleware' => 'Superadmin'], function () {
 
 
 
-    Route::get('/access/permission', [PermissionController::class, 'AccessPermission'])->name('permission.access');
-    Route::post('/access/permission/store', [PermissionController::class, 'AccessPermissionStore'])->name('permission.access.store');
+    Route::get('/permission/mentor', [PermissionController::class, 'PermissionMentor'])->name('permission.mentor');
+    Route::get('/permission/product-list', [PermissionController::class, 'permissionProductList'])->name('permission.productlist');
 });

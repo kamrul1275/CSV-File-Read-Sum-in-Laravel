@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
 
-     
+
         <div class="row">
 
 
@@ -25,38 +25,28 @@
                 </thead>
                 <tbody>
 
+                    @foreach ($usersApprove as $data)
+                        <tr>
+                            <td scope="row"> 1 </td>
+                            <td>{{ $data->name }}</td>
 
-                   @foreach ($usersApprove as $data)
-                       
-                   <tr>
-                    <td scope="row"> 1 </td>
-                    <td>{{$data->name}}</td>
+                            <td>
+                                @foreach ($data->roles as $iteam)
+                                    {{ $iteam->roll_name }}
+                                @endforeach
+                            </td>
 
+                            <td>
+                                <a href="{{ url('/role/approval/pendding/' . $data->id) }}"
+                                    class="btn btn-success">pendding</a>
+                                <a href="" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
 
-
-
-                    <td>
-                        @foreach ($data->roles as $iteam)
-                        {{ $iteam->roll_name }}
-                        @endforeach    
-                    
-                    </td>
-
-
-
-                    <td>
-                        <a href="{{url('/role/approval/pendding/'.$data->id) }}" class="btn btn-success">pendding</a>
-                        <a href="" class="btn btn-danger">delete</a>
-                    </td>
-
-                </tr> 
-
-                   @endforeach
-                       
 
                 </tbody>
             </table>
-
         </div>
     </div>
 

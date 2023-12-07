@@ -160,7 +160,9 @@ class AuthController extends Controller
 
     {
 
+        //$permission =   Role::with('permission')->latest()->get();
 
+        //return $permission;
         $usersPendding =  User::where('role', 'user')->where('status', 'inactive')->with('roles')->latest()->get();
 
 //dd($usersPendding);
@@ -182,6 +184,10 @@ class AuthController extends Controller
             foreach ($roles as $role) {
                 $permissions = array_merge($role->permission->toArray(), $permissions);
             };
+
+         
+
+            //return $permissions;
             return view('dashboard', compact('employee','permissions','usersPendding','usersApprove'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');

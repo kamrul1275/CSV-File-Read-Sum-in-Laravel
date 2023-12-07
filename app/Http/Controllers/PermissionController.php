@@ -66,4 +66,15 @@ class PermissionController extends Controller
         return $request->all();
 
 }//end method
+
+function PermissionMentor(){
+
+    return "oky";
+}//end method
+
+function permissionProductList(){
+    return "product list";
+}//end method
+
+
 }
