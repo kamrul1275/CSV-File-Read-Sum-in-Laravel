@@ -31,24 +31,16 @@ class RoleController extends Controller
         $roles->roll_name = $request->role_name;
         $roles->save();
 
-
-
-
         // $datas = role_user::create([
         //     'roll_name' => $request->role_name,
         // ]);
         // return   $datas;
-
-
-
-
         return redirect('/role');
     } //end method
 
 
     function Delete($id)
     {
-
         $data = Role::find($id);
         $data->delete();
         return redirect()->back()->with('msg', 'delete.....!');

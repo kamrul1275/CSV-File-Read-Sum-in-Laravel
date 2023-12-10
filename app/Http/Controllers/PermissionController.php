@@ -67,14 +67,29 @@ class PermissionController extends Controller
 
 }//end method
 
-function PermissionMentor(){
+function permissionView(){
+    return view('frontend.permission.view');
+ }//end method
+ 
+ 
 
-    return "oky";
+
+
+function PermissionCreate(){
+
+    return view('frontend.permission.create');
 }//end method
 
-function permissionProductList(){
-    return "product list";
-}//end method
+
+function permissionEdit(){
+    return view('frontend.permission.edit');
+}
+
+function permissionDelete(){
+
+    return view('frontend.permission.delete');
+}
+
 
 
 }

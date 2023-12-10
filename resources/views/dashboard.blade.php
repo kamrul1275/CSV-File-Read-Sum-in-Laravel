@@ -2,50 +2,46 @@
 
 @section('content')
     {{-- start nav --}}
+
+
+
+{{-- //@dd($permissions); --}}
+
+
+
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
       
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                    @if(isPermission('mentor'))
+                    @if(isPermission('view'))
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('permission.mentor') }}">Mentor</a>
+                            <a class="nav-link active" aria-current="page" href="{{route('permission.view') }}">View</a>
                         </li>
                     @endif
 
-                    @if(isPermission('product_list'))
+                    @if(isPermission('create'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('permission.productlist')}}">Product List</a>
+                            <a class="nav-link" href="{{ route('permission.create')}}">Create List</a>
                         </li>
                     @endif
 
-                    @if(isPermission('product_edit'))
+                    @if(isPermission('edit'))
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Product Edit</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('permission.edit')}}"> Edit</a>
                         </li>
                         @endif
 
-                        @if(isPermission('product_delete'))
+                        @if(isPermission('delete'))
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Product Delete</a>
+                                <a class="nav-link" href="{{ route('permission.delete')}}"> Delete</a>
                             </li>
                         @endif
 
 
-                        @if(isPermission('order'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Order</a>
-                            </li>
-                        @endif
-
-
-
-                        @if(isPermission('purchel'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Parcel</a>
-                            </li>
-                        @endif
+        
 
 
 
