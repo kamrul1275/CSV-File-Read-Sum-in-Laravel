@@ -5,7 +5,7 @@
 
 
 <div class="container">
-  <a href="{{ route('permission.create')}}" class="btn btn-info mt-4">Create Permission</a>  <br>
+  <a href="{{ route('create.permission.role')}}" class="btn btn-info mt-4">Create Permission</a>  <br>
 
 
     <div class="row">

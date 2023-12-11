@@ -18,7 +18,13 @@ Route::get('login', [AuthController::class, 'index'])->name('login')->middleware
 
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
+Route::post('login', [AuthController::class, 'postLogin'])->name('guest');
+
+
+
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
+
+Route::post('post-login', [AdminController::class, 'AdminPostLogin'])->name('admin.login.post');
 
 
 
@@ -58,7 +64,6 @@ Route::group(['middleware' => 'frontend'], function() {
 
 
 
-
 Route::group(['middleware' => 'backend'], function () {
 
             Route::post('/admin/login',[AdminController::class,'AdminLogin']);
@@ -87,7 +92,8 @@ Route::group(['middleware' => 'backend'], function () {
 
             // permission part
 
-            Route::get('/permission/create', [PermissionController::class, 'Create'])->name('permission.create');
+            Route::get('/permission/create/role', [PermissionController::class, 'CreatePermission'])->name('create.permission.role');
+
             Route::post('/permission/store', [PermissionController::class, 'Store'])->name('permission.store');
             Route::get('/permission/delete/{id}', [PermissionController::class, 'Delete'])->name('permission.delete');
 

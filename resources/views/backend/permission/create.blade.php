@@ -4,13 +4,7 @@
 
 <div class="container mt-4">
 
-   
-
     <div class="row">
-
-
-      
-
 
         <form action="{{ route('permission.store')}}" method="POST">
             @csrf
@@ -39,10 +33,6 @@
            
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-
-
-
-
 
     </div>
   </div>

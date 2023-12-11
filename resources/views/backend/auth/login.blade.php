@@ -14,13 +14,13 @@
 
               <div class="card">
 
-                  <div class="card-header">Login</div>
+                  <div class="card-header">Admin Login</div>
 
                   <div class="card-body">
 
   
 
-                      <form action="{{ route('guest') }}" method="POST">
+                      <form action="{{ route('admin.login.post') }}" method="POST">
 
                           @csrf
 

@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\Salary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -61,39 +62,23 @@ class AuthController extends Controller
 
     {
         $request->validate([
-
             'email' => 'required',
             'password' => 'required',
 
         ]);
 
 
-
-       
-
         $request->session()->regenerate();
 
         //dd($request->session()->regenerate());
 
-     
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (User::where(['type'=>'frontend', 'email'=>$request->email])->exists() && Auth::attempt($credentials)) {
 
 
-            $url = '';
-
-            if($request->user()->role==='admin'){
-                $url ='/admin/dashboard';
-            }else{
-    
-                $url ='/dashboard';
-            }
-
-            return redirect()->intended( $url)
-
-                ->withSuccess('You have Successfully loggedin');
+            return redirect()->intended(RouteServiceProvider::HOME)->withSuccess('You have Successfully loggedin');
         }
 
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');

@@ -73,7 +73,7 @@
                 <div class="menu-title">Permission</div>
             </a>
             <ul>
-                <li> <a href="{{route('permission.create') }}"><i class="bx bx-right-arrow-alt"></i>Create Permission</a>
+                <li> <a href="{{route('create.permission.role') }}"><i class="bx bx-right-arrow-alt"></i>Create Permission</a>
                 </li>
                 <li> <a href="{{route('permission.index') }}"><i class="bx bx-right-arrow-alt"></i>All Permission</a>
                 </li>

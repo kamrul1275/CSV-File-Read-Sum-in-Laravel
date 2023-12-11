@@ -5,11 +5,53 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\role_user;
 use App\Models\User;
+use App\Models\Role;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+
+// admin login start
+function adminLogin(){
+
+    return view('backend.auth.login');
+}
+
+
+public function AdminPostLogin(Request $request)
+
+{
+    $request->validate([
+
+        'email' => 'required',
+        'password' => 'required',
+
+    ]);
+
+
+    $request->session()->regenerate();
+
+    //dd($request->session()->regenerate());
+
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+
+        return redirect()->intended(RouteServiceProvider::ADMIN_DASHBOARD)->withSuccess('Admin Successfully loggedin');
+    }
+
+    return redirect("/admin/login")->withSuccess('Oppes! You have entered invalid credentials');
+}
+
+
+
+// end admin login
+
+
+
     public function AdminDashboard()
 
     {
@@ -21,7 +63,7 @@ class AdminController extends Controller
     public function Adminlogout()
     {
         Auth::logout();
-        return Redirect('login');
+        return Redirect('admin.login');
     } //end method
 
 
@@ -50,9 +92,9 @@ class AdminController extends Controller
 
             $roles->save();
 
-            return redirect('/role/approve')->with('msg','Approve Successfully');
+            return redirect('/role/approve')->with('msg', 'Approve Successfully');
         }
-    }//end method
+    } //end method
 
 
     function AdminApprove()
@@ -64,7 +106,8 @@ class AdminController extends Controller
 
 
 
-    function AdminApprPendding($id){
+    function AdminApprPendding($id)
+    {
 
         $roles = User::find($id);
         if ($roles->status == 'active') {
@@ -75,9 +118,8 @@ class AdminController extends Controller
 
             $roles->save();
 
-            return redirect('/role/approve')->with('msg','Pendding Successfully');
+            return redirect('/role/approve')->with('msg', 'Pendding Successfully');
         }
-
-    }//end method
+    } //end method
 
 }
